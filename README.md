@@ -1,7 +1,8 @@
+<br>
 <p align="center">
-  <img src="https://i.imgur.com/3lzaO71.png" alt="its GabrielTenma" width="" height="">
+  <img src="https://i.imgur.com/3lzaO71.png" alt="its GabrielTenma" width="500" height="400">
 </p>
-
+<br>
 # Gab LightDM
 LightDM-webkit Theme with modern style ! :D
 
