@@ -42,6 +42,7 @@ you must install this `fonts`
 2. iosevka  : https://github.com/be5invis/Iosevka/releases/download/v2.0.1/01-iosevka-2.0.1.zip
 
 or you can customize in `CSS`
+how to install font? google.com
 
 <br>
 
