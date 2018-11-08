@@ -35,6 +35,16 @@ Instructions will differ for every platform, but I can tell you how to install i
     
 <br>
 
+## Font required
+you must install this `fonts`
+
+1. Segoe UI
+2. iosevka
+
+or you can customize in CSS
+
+<br>
+
 ## Screenshot 
 ![](https://raw.githubusercontent.com/GabrielTenma/LightDM-Gab-Gradient/master/.skrinsutan/GabrielDesktop_2018_11_08_13-45-46-1366x768.png)
 ![](https://raw.githubusercontent.com/GabrielTenma/LightDM-Gab-Gradient/master/.skrinsutan/GabrielDesktop_2018_11_08_13-46-06-1366x768.png)
