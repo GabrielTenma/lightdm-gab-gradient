@@ -38,10 +38,10 @@ Instructions will differ for every platform, but I can tell you how to install i
 ## Font required
 you must install this `fonts`
 
-1. Segoe UI
-2. iosevka
+1. Segoe UI : https://github.com/meloncholy/mt-stats-viewer/raw/master/public/fonts/segoe-ui/segoeui.ttf
+2. iosevka  : https://github.com/be5invis/Iosevka/releases/download/v2.0.1/01-iosevka-2.0.1.zip
 
-or you can customize in CSS
+or you can customize in `CSS`
 
 <br>
 
