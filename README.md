@@ -8,6 +8,7 @@
 LightDM-webkit Theme with modern style :D
 More colorfull & animated!
 <br>
+<br>
 
 ## What is LightDM ?
 LightDM is a cross-desktop display manager. Its key features are:
@@ -28,12 +29,8 @@ Instructions will differ for every platform, but I can tell you how to install i
 3. Clone this repository here, it should create a folder called `LightDM-Gab-Gradient`
 4. Enable the theme in your `/etc/lightdm/lightdm-webkit-greeter.conf`
 5. Replace lightdm-gtk to lightdm-webkit in your `/usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf`
-6. 60-lightdm-gtk-greeter.conf code example
-    ``
-    [Seat:*]
-     #greeter-session=lightdm-gtk-greeter
-     greeter-session=lightdm-webkit-greeter
-    ``
+6. change line code `greeter-session=lightdm-gtk-greeter` to `greeter-session=lightdm-webkit-greeter`
+    
 <br>
 
 ## Screenshot 
