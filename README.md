@@ -3,9 +3,11 @@
   <img src="https://i.imgur.com/3lzaO71.png" alt="its GabrielTenma" width="500" height="400">
 </p>
 <br>
-# Gab LightDM
-LightDM-webkit Theme with modern style ! :D
 
+## Gab LightDM
+LightDM-webkit Theme with modern style :D
+More colorfull & animated!
+<br>
 
 ## What is LightDM ?
 LightDM is a cross-desktop display manager. Its key features are:
@@ -16,3 +18,22 @@ LightDM is a cross-desktop display manager. Its key features are:
    - Supports remote login (incoming - XDMCP, VNC, outgoing - XDMCP, pluggable).
    - Comprehensive test suite.
    - Low code complexity.
+<br>
+
+## Installation
+Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
+
+1. Install and enable `lightdm` and `lightdm-webkit-greeter`
+2. In the terminal, navigate to `/usr/share/lightdm-webkit/themes/`
+3. Clone this repository here, it should create a folder called `LightDM-Gab-Gradient`
+4. Enable the theme in your `/etc/lightdm/lightdm-webkit-greeter.conf`
+5. Replace lightdm-gtk to lightdm-webkit in your `/usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf`
+6. 60-lightdm-gtk-greeter.conf code example
+    ``
+    [Seat:*]
+     #greeter-session=lightdm-gtk-greeter
+     greeter-session=lightdm-webkit-greeter
+    ``
+<br>
+
+## Screenshot 
