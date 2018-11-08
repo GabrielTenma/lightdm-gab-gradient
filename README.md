@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/3lzaO71.png" alt="its GabrielTenma">
+  <img src="https://i.imgur.com/3lzaO71.png" alt="its GabrielTenma" width="" height="">
 </p>
 
 # Gab LightDM
