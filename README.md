@@ -6,7 +6,8 @@
 
 ## Gab LightDM
 - LightDM-webkit Theme with modern style :D
-- More colorfull & animated!
+- More colorfull & animated background!
+- animated Button too!!
 - Support MultiAccount
 - but requires more processor resources :( 10% avg.
 <br>
