@@ -22,7 +22,6 @@ LightDM is a cross-desktop display manager. Its key features are:
 <br>
 
 ## Installation
-### installasi
 Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
 
 1. Install and enable `lightdm` and `lightdm-webkit-greeter`
