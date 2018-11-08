@@ -5,8 +5,7 @@
 <br>
 
 ## Gab LightDM
-LightDM-webkit Theme with modern style :D
-More colorfull & animated!
+LightDM-webkit Theme with modern style :D , More colorfull & animated!
 <br>
 <br>
 
