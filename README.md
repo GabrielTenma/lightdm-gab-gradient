@@ -5,7 +5,7 @@
 <br>
 
 ## Gab LightDM
-- LightDM-webkit Theme with modern style :D
+- LightDM-<b>weebkit</b> Theme with modern style :D
 - More colorfull & animated background!
 - animated Button too!!
 - Support MultiAccount
