@@ -36,9 +36,9 @@ Instructions will differ for every platform, but I can tell you how to install i
 6. change line code `greeter-session=lightdm-gtk-greeter` to `greeter-session=lightdm-webkit-greeter`
 <br>
 
-want more easier? 
-  - use lwic : https://github.com/khanhecate/lwic
-  - tutorial : [Here](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
+Want more easier ? 
+  - Use LWIC : https://github.com/khanhecate/lwic
+  - Tutorial : [Here](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
   
 <br>
 
