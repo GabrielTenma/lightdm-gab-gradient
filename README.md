@@ -14,15 +14,8 @@
 <br>
 <br>
 
-## What is LightDM ?
-LightDM is a cross-desktop display manager. Its key features are:
-   - Cross-desktop - supports different desktop technologies.
-   - Supports different display technologies (X, Mir, Wayland ...).
-   - Lightweight - low memory usage and high performance.
-   - Supports guest sessions.
-   - Supports remote login (incoming - XDMCP, VNC, outgoing - XDMCP, pluggable).
-   - Comprehensive test suite.
-   - Low code complexity.
+## What is LightDM Webkit ?
+The lightdm-webkit-greeter allows you to choose a background image directly on the login screen. It also offers an option to display a random image each time it starts if you use the lightdm-gab-gradient theme. By default, images are sourced from /usr/share/backgrounds. You can change the background images directory by editing lightdm-webkit-greeter.conf
 <br>
 
 ## Installation
