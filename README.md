@@ -15,9 +15,11 @@
 <br>
 
 ## What is LightDM Webkit ?
-The lightdm-webkit-greeter allows you to choose a background image directly on the login screen. It also offers an option to display a random image each time it starts if you use the lightdm-gab-gradient theme. By default, images are sourced from /usr/share/backgrounds. You can change the background images directory by editing lightdm-webkit-greeter.conf
-<br>
+The lightdm-webkit-greeter allows you to choose a background image directly on the login screen. It also offers an option to display a random image each time it starts if you use the lightdm-gab-gradient theme. 
+By default, images are sourced from `/usr/share/backgrounds` . You can change the background images directory by editing lightdm-webkit-greeter.conf
 
+<br>
+<br>
 ## Installation
 Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
 
