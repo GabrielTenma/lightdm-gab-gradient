@@ -19,7 +19,6 @@ The lightdm-webkit-greeter allows you to choose a background image directly on t
 By default, images are sourced from `/usr/share/backgrounds` . You can change the background images directory by editing lightdm-webkit-greeter.conf
 
 <br>
-<br>
 
 ## Installation
 Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
