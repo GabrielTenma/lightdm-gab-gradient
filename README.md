@@ -20,6 +20,7 @@ By default, images are sourced from `/usr/share/backgrounds` . You can change th
 
 <br>
 <br>
+
 ## Installation
 Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
 
