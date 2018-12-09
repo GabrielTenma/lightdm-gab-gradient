@@ -38,8 +38,8 @@ Instructions will differ for every platform, but I can tell you how to install i
 
 want more easier? 
   - use lwic : https://github.com/khanhecate/lwic
-  - tutorial : ![Here][https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html]
-    
+  - tutorial : [Here](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
+  
 <br>
 
 ## Font required
