@@ -34,10 +34,11 @@ Instructions will differ for every platform, but I can tell you how to install i
 4. Enable the theme in your `/etc/lightdm/lightdm-webkit-greeter.conf`
 5. Replace lightdm-gtk to lightdm-webkit in your `/usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf`
 6. change line code `greeter-session=lightdm-gtk-greeter` to `greeter-session=lightdm-webkit-greeter`
+<br>
 
-<b>want more easier? 
-  use lwic : https://github.com/khanhecate/lwic
-  tutorial : ![Here](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
+<b>want more easier?</b> 
+  - use lwic : https://github.com/khanhecate/lwic
+  - tutorial : ![Here](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
     
 <br>
 
