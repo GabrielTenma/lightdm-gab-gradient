@@ -37,8 +37,8 @@ Instructions will differ for every platform, but I can tell you how to install i
 <br>
 
 Want more easier ? 
-1. Use LWIC : https://github.com/khanhecate/lwic
-2. Tutorial : [click me!](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
+- Use LWIC : https://github.com/khanhecate/lwic
+- Tutorial : [click me!](https://khanafi-w9.blogspot.com/2018/12/manual-page-for-lwic-lightdm-webkit.html)
   
 <br>
 
