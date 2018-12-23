@@ -5,7 +5,7 @@
 <br>
 
 <div align='center'>
-    <h1>Gab LightDm-Weebkit</h1><br>
+    <h2>Gab LightDm-Weebkit</h2><br>
 </div>
 
 - LightDM-<b>weebkit</b> Theme with modern style :D
