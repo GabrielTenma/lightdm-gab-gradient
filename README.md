@@ -4,7 +4,10 @@
 </p>
 <br>
 
-## Gab LightDM
+<div align='center'>
+    <h1>Gab LightDm-Weebkit</h1><br>
+</div>
+
 - LightDM-<b>weebkit</b> Theme with modern style :D
 - More colorfull & animated background!
 - animated Button too!!
