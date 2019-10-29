@@ -63,7 +63,8 @@ function start_authentication(username)
 function authentication_complete()
 {
     if (lightdm.is_authenticated)
-    	lightdm.login (lightdm.authentication_user, lightdm.default_session);
+    	//lightdm.login (lightdm.authentication_user, lightdm.default_session); for lightdm-webkit-greeter
+	lightdm.login (lightdm.authentication_user, lightdm.start_session_sync, 'gnome'); //lightdm-webkit2-greeter
     else
    	{
     	select_user_from_list(curr-1, true);
