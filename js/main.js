@@ -68,7 +68,7 @@ function authentication_complete()
     else
    	{
     	select_user_from_list(curr-1, true);
-    	show_message ("Passwordnya salah!");
+    	show_message ("Wrong Password!");
    	}
 
 }

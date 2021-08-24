@@ -49,10 +49,10 @@ if (!('lightdm' in window)) {
 
     lightdm.users = [
         {
-            name: "sexmachine",
-            real_name: "superman",
-            display_name: "Magic Wave",
-            image: "static/profile.png",
+            name: "gabriel221",
+            real_name: "gabriel",
+            display_name: "Gabriel White Tenma",
+            image: "static/gabriel.jpeg",
             language: "en_US",
             layout: null,
             session: null,
