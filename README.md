@@ -6,11 +6,10 @@
 
 
 ## Gab Lightdm-weebkit
-- LightDM-<b>weebkit</b> Theme with modern style :D
-- More colorfull & animated background!
+- LightDM-<b>weebkit</b> Theme
+- Animated Background Gradient
 - animated Button too!!
-- Support MultiAccount
-- but requires more processor resources :( 10% avg.
+- Multiaccount supported
 
 <br>
 <br>
@@ -36,15 +35,13 @@ Instructions will differ for every platform, but I can tell you how to install i
 ## Font required
 you must install this `fonts`
 
-- Segoe UI : https://github.com/meloncholy/mt-stats-viewer/raw/master/public/fonts/segoe-ui/segoeui.ttf
-- iosevka  : https://github.com/be5invis/Iosevka/releases/download/v2.0.1/01-iosevka-2.0.1.zip
+- Balsamiq : (already included)
+- Segoe UI : https://github.com/meloncholy/mt-stats-viewer/raw/master/public/fonts/segoe-ui/segoeui.ttf `optional`
+- iosevka  : https://github.com/be5invis/Iosevka/releases/download/v2.0.1/01-iosevka-2.0.1.zip `optional`
 
 or you can customize in `CSS`
-
-how to install font? google.com
 
 <br>
 
 ## Screenshot 
-![](https://raw.githubusercontent.com/GabrielTenma/LightDM-Gab-Gradient/master/.skrinsutan/GabrielDesktop_2018_11_08_13-45-46-1366x768.png)
-![](https://raw.githubusercontent.com/GabrielTenma/LightDM-Gab-Gradient/master/.skrinsutan/GabrielDesktop_2018_11_08_13-46-06-1366x768.png)
+![](https://raw.githubusercontent.com/GabrielTenma/lightdm-gab-gradient/master/.skrinsutan/Screen%20Shot%202021-08-24%20at%209.51.50%20PM%20%E3%82%AC%E3%83%B4.png)
