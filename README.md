@@ -44,4 +44,4 @@ or you can customize in `CSS`
 <br>
 
 ## Screenshot 
-![](https://raw.githubusercontent.com/GabrielTenma/lightdm-gab-gradient/master/.skrinsutan/Screen%20Shot%202021-08-24%20at%209.51.50%20PM%20%E3%82%AC%E3%83%B4.png)
+![](https://raw.githubusercontent.com/GabrielTenma/lightdm-gab-gradient/master/.skrinsutan/Screen%20Shot%202021-08-24%20at%2010.28.50%20PM%20%E3%82%AC%E3%83%B4.png)
