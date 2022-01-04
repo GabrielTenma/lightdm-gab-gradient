@@ -35,11 +35,11 @@ function select_user_from_list(idx, err)
 	if(!err)
     	find_and_display_user_picture(idx);
 
-    if(lightdm._username){
+    if(lightdm.authentication_user){
         lightdm.cancel_authentication();
     }
 
-    selected_user = lightdm.users[idx].name;
+    selected_user = lightdm.users[idx].username;
     if(selected_user !== null) {
         start_authentication(selected_user);
     }
@@ -49,13 +49,13 @@ function select_user_from_list(idx, err)
 
 function start_authentication(username)
 {
-   lightdm.cancel_timed_login ();
+   lightdm.cancel_autologin();
    label = document.getElementById('countdown_label');
    if (label != null)
        label.style.visibility = "false";
 	
 	selected_user = username;
-    lightdm.start_authentication(username);
+    lightdm.authenticate(username);
     
     show_message("?");
 }
@@ -64,7 +64,8 @@ function authentication_complete()
 {
     if (lightdm.is_authenticated)
     	//lightdm.login (lightdm.authentication_user, lightdm.default_session); for lightdm-webkit-greeter
-	lightdm.login (lightdm.authentication_user, lightdm.start_session_sync, 'gnome'); //lightdm-webkit2-greeter
+      //lightdm.login (lightdm.authentication_user, lightdm.start_session_sync, 'gnome'); //lightdm-webkit2-greeter
+      lightdm.start_session('gnome');
     else
    	{
     	select_user_from_list(curr-1, true);
@@ -91,11 +92,12 @@ function provide_secret()
 {
   	password = $pass.val() || null;
   	if(password !== null)
-        lightdm.provide_secret(password);
+        lightdm.respond(password);
 }
 
 function init()
 {
+    lightdm.authentication_complete.connect(authentication_complete);
     setup_users_list();
     select_user_from_list(0, false);
     show_message ("&nbsp");
