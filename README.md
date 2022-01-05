@@ -20,15 +20,20 @@ By default, images are sourced from `/usr/share/backgrounds` . You can change th
 
 <br>
 
-## Installation
+<!-- ## Installation
 Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
 
-1. Install and enable `lightdm` and `lightdm-webkit-greeter`
-2. In the terminal, navigate to `/usr/share/lightdm-webkit/themes/`
+1. Install and enable `lightdm` and `web-greeter`
+2. In the terminal, navigate to `/usr/share/web-greeter/themes/`
 3. Clone this repository here, it should create a folder called `lightdm-gab-gradient`
 4. Enable the theme in your `/etc/lightdm/lightdm-webkit-greeter.conf`
 5. Replace lightdm-gtk to lightdm-webkit in your `/usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf`
 6. change line code `greeter-session=lightdm-gtk-greeter` to `greeter-session=lightdm-webkit-greeter`
+ -->
+<br>
+
+## Depedency required
+ - web-greeter : https://github.com/JezerM/web-greeter
 
 <br>
 
