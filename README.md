@@ -32,7 +32,7 @@ Instructions will differ for every platform, but I can tell you how to install i
  -->
 <br>
 
-## Depedency required
+## Dependency required
  - web-greeter : https://github.com/JezerM/web-greeter
 
 <br>
