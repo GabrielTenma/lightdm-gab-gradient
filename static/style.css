@@ -79,6 +79,7 @@ body
 	margin-top:40px;
 	height:7em;
 	-webkit-transition:opacity .5s ease-in-out;
+  transition:opacity .5s ease-in-out;
 }
 
 #login-response
@@ -121,7 +122,7 @@ body
 #last,
 #next
 {
-	color:#ffffff;
+	color:#e6e6e6;
 	font-family:"Balsamiq-sans";
 }
 
@@ -138,7 +139,6 @@ body
 	right:135px;
 	left:-20px;
 	width:12px;
-	color:#ffffff;
 }
 
 #container
@@ -163,6 +163,7 @@ body
     /* margin-bottom: 13px; */
     border-spacing: 31px 0px;
     -webkit-transition:margin .8s ease-in-out;
+    transition:margin .8s ease-in-out;
     text-align:center;
     background-color: #f9f9f9;
 }
