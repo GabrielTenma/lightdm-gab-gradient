@@ -28,10 +28,10 @@ function setup_users_list() {
 
 function select_user_from_list(idx, err) {
     var idx = idx || 0;
-    if(!err) find_and_display_user_picture(idx);
-    if(lightdm.authentication_user) lightdm.cancel_authentication();
+    if (!err) find_and_display_user_picture(idx);
+    if (lightdm.authentication_user) lightdm.cancel_authentication();
     selected_user = lightdm.users[idx].username;
-    if(selected_user !== null) start_authentication(selected_user);
+    if (selected_user !== null) start_authentication(selected_user);
     $pass.trigger('focus');
 }
 
@@ -71,7 +71,7 @@ function find_and_display_user_picture(idx, z) {
 
 function provide_secret() {
     password = $pass.val() || null;
-    if(password !== null) lightdm.respond(password);
+    if (password !== null) lightdm.respond(password);
 }
 
 function init() {
@@ -81,16 +81,16 @@ function init() {
     show_message ("&nbsp");
     $("#last").on('click', function(e) {
         curr--;
-        if(curr <= 0) curr = children;
-        if(children != 1) select_user_from_list(curr-1, false);
+        if (curr <= 0) curr = children;
+        if (children != 1) select_user_from_list(curr-1, false);
         $("#name").css("margin-left", -31-(265*(curr-1))+"px");
         show_message("&nbsp");
     });
 
     $("#next").on('click', function (e) {
         curr++;
-        if(curr > children) curr = 1;
-        if(children != 1) select_user_from_list(curr-1, false);
+        if (curr > children) curr = 1;
+        if (children != 1) select_user_from_list(curr-1, false);
         $("#name").css("margin-left", -31-(265*(curr-1))+"px");
         show_message("&nbsp");
     });
