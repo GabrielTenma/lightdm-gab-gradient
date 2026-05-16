@@ -2,43 +2,46 @@ let children;
 let currentIndex = 0;
 let selectedUser = null;
 
-const $userList = $("#name");
-const $pass = $("#login-password");
-const $pic = $("#login-picture");
-const $response = $("#login-response");
+var $userList;
+var $pass;
+var $pic;
+var $response;
 
 function show_error(msg) {
     console.error("[lightdm-gab-gradient]", msg);
 }
 
 function show_message(msg) {
-    $response.text(msg);
+    if ($response) $response.text(msg);
 }
 
 function setup_users_list() {
     $userList.empty();
     $.each(lightdm.users, function (i, user) {
         $userList.append(
-            $("<span>").attr("data-user-index", i).text(user.display_name || user.name)
+            $("<span>")
+                .attr("data-user-index", i)
+                .text(user.display_name || user.name)
         );
     });
     children = $userList.children().length;
 }
 
 function find_and_display_user_picture(idx) {
-    const user = lightdm.users[idx];
-    const src = user && user.image;
+    var user = lightdm.users[idx];
+    var src = user && user.image;
 
-    $pic.css("opacity", 0);
+    if (src) {
+        $pic.attr("src", src);
+    } else {
+        $pic.attr("src", "static/profile.jpg");
+    }
 
-    setTimeout(function () {
-        if (src) {
-            $pic.attr("src", src);
-        } else {
-            $pic.attr("src", "static/profile.jpg");
-        }
+    $pic.on("load", function () {
         $pic.css("opacity", 1);
-    }, 250);
+    }).on("error", function () {
+        $pic.attr("src", "static/profile.jpg");
+    }).css("opacity", 0);
 }
 
 function select_user_from_list(idx, err) {
@@ -70,7 +73,7 @@ function start_authentication(username) {
 
 function authentication_complete() {
     if (lightdm.is_authenticated) {
-        const sessionKey = lightdm.default_session
+        var sessionKey = lightdm.default_session
             ? lightdm.default_session.key
             : null;
         if (sessionKey) {
@@ -83,7 +86,7 @@ function authentication_complete() {
 }
 
 function provide_secret() {
-    const pw = $pass.val();
+    var pw = $pass.val();
     if (pw) {
         lightdm.respond(pw);
     }
@@ -102,13 +105,23 @@ function navigate_next() {
 }
 
 function update_user_view() {
-    const offset = currentIndex * 240;
-    $userList.css("transform", `translateX(-${offset}px)`);
+    var offset = currentIndex * 240;
+    $userList.css("transform", "-" + offset + "px");
     select_user_from_list(currentIndex, false);
 }
 
 function init() {
-    // Make sure mock is only loaded in dev context (see mock.js gate)
+    $userList = $("#name");
+    $pass     = $("#login-password");
+    $pic      = $("#login-picture");
+    $response = $("#login-response");
+
+    if (!$userList.length || !$pass.length || !$pic.length) {
+        console.error("[lightdm-gab-gradient] DOM elements missing – retrying in 250ms");
+        setTimeout(init, 250);
+        return;
+    }
+
     lightdm.authentication_complete.connect(authentication_complete);
     setup_users_list();
 
@@ -118,16 +131,12 @@ function init() {
 
     $response.text("\u00a0");
 
-    // User navigation buttons
-    $("#last").on("click", function () {
-        navigate_prev();
-    });
+    $userList.css("transform", "-" + 0 + "px");
 
-    $("#next").on("click", function () {
-        navigate_next();
-    });
+    $("#last").on("click", navigate_prev);
 
-    // Keyboard navigation
+    $("#next").on("click", navigate_next);
+
     $(document).on("keydown", function (e) {
         switch (e.key) {
             case "ArrowLeft":
@@ -145,7 +154,6 @@ function init() {
         }
     });
 
-    // Form submission
     $("#login-form").on("submit", function (e) {
         e.preventDefault();
         provide_secret();
@@ -153,7 +161,6 @@ function init() {
 }
 
 $(document).ready(function () {
-    // Guards: only run when lightdm API is present
     if (typeof lightdm !== "undefined" && lightdm.users) {
         init();
     }

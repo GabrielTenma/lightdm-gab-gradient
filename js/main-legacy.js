@@ -2,17 +2,17 @@ var children;
 var currentIndex = 0;
 var selectedUser = null;
 
-var $userList = $("#name");
-var $pass = $("#login-password");
-var $pic = $("#login-picture");
-var $response = $("#login-response");
+var $userList;
+var $pass;
+var $pic;
+var $response;
 
 function show_error(msg) {
     console.error("[lightdm-gab-gradient]", msg);
 }
 
 function show_message(msg) {
-    $response.text(msg);
+    if ($response) $response.text(msg);
 }
 
 function setup_users_list() {
@@ -30,16 +30,17 @@ function find_and_display_user_picture(idx) {
     var user = lightdm.users[idx];
     var src = user && user.image;
 
-    $pic.css("opacity", 0);
+    if (src) {
+        $pic.attr("src", src);
+    } else {
+        $pic.attr("src", "static/profile.jpg");
+    }
 
-    setTimeout(function () {
-        if (src) {
-            $pic.attr("src", src);
-        } else {
-            $pic.attr("src", "static/profile.jpg");
-        }
+    $pic.on("load", function () {
         $pic.css("opacity", 1);
-    }, 250);
+    }).on("error", function () {
+        $pic.attr("src", "static/profile.jpg");
+    }).css("opacity", 0);
 }
 
 function select_user_from_list(idx, err) {
@@ -86,7 +87,6 @@ function authentication_complete() {
 
 function provide_secret() {
     var pw = $pass.val();
-
     if (pw) {
         lightdm.respond(pw);
     }
@@ -109,12 +109,23 @@ function update_user_view() {
     var value = "-" + offset + "px";
     $userList.css({
         "-webkit-transform": value,
-        "transform":       value
+        "transform": value
     });
     select_user_from_list(currentIndex, false);
 }
 
 function init() {
+    $userList = $("#name");
+    $pass     = $("#login-password");
+    $pic      = $("#login-picture");
+    $response = $("#login-response");
+
+    if (!$userList.length || !$pass.length || !$pic.length) {
+        console.error("[lightdm-gab-gradient] DOM elements missing – retrying in 250ms");
+        setTimeout(init, 250);
+        return;
+    }
+
     lightdm.authentication_complete.connect(authentication_complete);
     setup_users_list();
 
@@ -124,16 +135,12 @@ function init() {
 
     $response.text("\u00a0");
 
-    $("#last").on("click", function () {
-        navigate_prev();
-    });
+    $userList.css("transform", "-" + 0 + "px");
 
-    $("#next").on("click", function () {
-        navigate_next();
-    });
+    $("#last").on("click", navigate_prev);
+    $("#next").on("click", navigate_next);
 
     $(document).on("keydown", function (e) {
-        /* keyCode → named key (ES5 / JSC 1.8 compat) */
         var key = e.keyCode || e.which || 0;
         if (key === 37) {
             navigate_prev();

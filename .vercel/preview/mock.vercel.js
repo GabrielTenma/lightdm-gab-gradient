@@ -38,7 +38,7 @@
             name: "mita",
             real_name: "Mita",
             display_name: "Mita Illya",
-            image: "static/person1.jpg",
+            image: "static/person1.jpeg",
             language: "en_US",
             layout: null,
             session: null,
