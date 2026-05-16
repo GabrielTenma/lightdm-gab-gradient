@@ -1,423 +1,279 @@
+/* ─── @font-face ────────────────────────────────────────────────────────── */
+
 @font-face {
-    font-family: 'Balsamiq-sans';
-    src: url(Balsamiq_Sans/BalsamiqSans-Regular.ttf);
+    font-family: "Balsamiq Sans";
+    font-weight: 400;
+    font-style: normal;
+    src: url("static/Balsamiq_Sans/BalsamiqSans-Regular.ttf") format("truetype");
 }
 
-body
-{
-	background: linear-gradient(270deg, #409bf0, #ff8585, #8598ff);
-	background-size: 600% 600%;
-
-	-webkit-animation: AnimationName 30s ease infinite;
-	-moz-animation: AnimationName 30s ease infinite;
-	animation: AnimationName 30s ease infinite;
-}
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 51%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 51%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 51%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 51%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 51%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 51%}
+@font-face {
+    font-family: "Balsamiq Sans";
+    font-weight: 700;
+    font-style: normal;
+    src: url("static/Balsamiq_Sans/BalsamiqSans-Bold.ttf") format("truetype");
 }
 
-
-/*
-#login-background
-{
-	background-image:url(bg2.jpg);
-	background-size:100%;
-    background-repeat:no-repeat;
-    background-color:black;
-    background-position:center top;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-}
-*/
-#wrapper
-{
-	z-index:1;
-	margin:auto;
+@font-face {
+    font-family: "Balsamiq Sans";
+    font-weight: 400;
+    font-style: italic;
+    src: url("static/Balsamiq_Sans/BalsamiqSans-Italic.ttf") format("truetype");
 }
 
-#clock-box
-{
-	font-family:"Balsamiq-sans";
-	font-size:70px;
-	text-align:center;
-	color:white;
+@font-face {
+    font-family: "Balsamiq Sans";
+    font-weight: 700;
+    font-style: italic;
+    src: url("static/Balsamiq_Sans/BalsamiqSans-BoldItalic.ttf") format("truetype");
 }
 
-#login-box
-{
-	text-align:center;
-	background-color:rgb(255, 255, 255);
-	width:300px;
-	font-family: 'Balsamiq-sans';
-	height:385px;
-	margin:100px auto;
-	border-radius:25px;
-	box-shadow: 0 0 100px 5px rgba(0,0,0,0.2);
-	overflow:hidden;
+/* ─── Root / reset ─────────────────────────────────────────────────────── */
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#login-picture
-{
-	border-radius:100%;
-	margin-top:40px;
-	height:7em;
-	-webkit-transition:opacity .5s ease-in-out;
-  transition:opacity .5s ease-in-out;
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    font-family: "Balsamiq Sans", sans-serif;
 }
 
-#login-response
-{
-	width:100%;
-	margin-top:20px;
-	font-family:'Balsamiq-sans';
-	font-size: 14px;
-	color:#ff6f6f;
-	/*
-	Error
-	color:#FF1919;
-	*/
+/* ─── Animated gradient background ──────────────────────────────────────── */
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-#login-form
-{
-	margin:auto;
-	margin-right:30px;
-	width:240px;
+body {
+    background: linear-gradient(135deg, #409bf0, #ff8585, #8598ff);
+    background-size: 300% 300%;
+    animation: gradient-shift 20s ease infinite;
 }
 
-#login-name
-{
-	-webkit-appearance: none;
-	margin-top:10px;
-	background-color:white;
-	border:1px solid #e6e6e6;
-	width:100%;
-	height:40px;
-	border-radius:2px;
-	padding:6px 5px 10px 5px;
-	font-size:15px;
-	font-family:"Segoe UI Bold";
-	color:#5b5b5b;
-	display:none;
+/* ─── Wrapper ───────────────────────────────────────────────────────────── */
 
+#wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
+/* ─── Clock (optional, hidden by default) ────────────────────────────────── */
+
+#clock-box {
+    font-family: "Balsamiq Sans", sans-serif;
+    font-size: 5rem;
+    text-align: center;
+    color: white;
+}
+
+/* ─── Login card ────────────────────────────────────────────────────────── */
+
+#login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    width: 18rem;
+    min-height: 24rem;
+    padding: 2.5rem 1.5rem 1.5rem;
+    background-color: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 4rem rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+/* ─── User avatar ────────────────────────────────────────────────────────── */
+
+#login-picture {
+    display: block;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ─── Feedback / error message ────────────────────────────────────────────── */
+
+#login-response {
+    width: 100%;
+    font-size: 0.85rem;
+    color: #ff6f6f;
+    min-height: 1.2em;
+}
+
+#login-response.success {
+    color: #4caf50;
+}
+
+/* ─── Form ───────────────────────────────────────────────────────────────── */
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+/* ─── User list (prev / next carousel) ────────────────────────────────────── */
+
+#container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border: 1px solid #f5f5f5;
+    border-radius: 0.625rem;
+    position: relative;
+}
+
+#name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-shrink: 0;
+    transition: transform 0.4s ease-in-out;
+}
+
+#name span {
+    flex: 0 0 100%;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Nav buttons inside the carousel track */
 #last,
-#next
-{
-	color:#e6e6e6;
-	font-family:"Balsamiq-sans";
+#next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    color: #bbb;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
 }
 
 #last:hover,
-#next:hover
-{
-	cursor:pointer;
+#next:hover {
+    color: #409bf0;
 }
 
-#last
-{
-	position:relative;
-	top:10px;
-	right:135px;
-	left:-20px;
-	width:12px;
+#last {
+    left: 0.25rem;
 }
 
-#container
-{
-	margin-top:-20px;
-	width:99.5%;
-	overflow:hidden;
-	background-color:white;
-	border:1px solid #f5f5f5;
-	border-radius:10px;
+#next {
+    right: 0.25rem;
 }
 
+/* ─── Password field ─────────────────────────────────────────────────────── */
 
-#name
-{
-	margin-left: -31px;
-    text-align: left;
-    width: 200%;
-    font-family: "Balsamiq-sans";
-    font-size: 15px;
-    color: #999;
-    /* margin-bottom: 13px; */
-    border-spacing: 31px 0px;
-    -webkit-transition:margin .8s ease-in-out;
-    transition:margin .8s ease-in-out;
-    text-align:center;
-    background-color: #f9f9f9;
-}
-
-#name div
-{
-	display: table-cell;
-  	padding: 6px 5px 10px 5px;
-  	min-width: 225px;
-  	max-width: 225px;
-  	/* margin: 100px; */
-  	/* height: 100px; */
+#login-password {
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    font-family: "Balsamiq Sans", sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #e2e1e1;
+    border-radius: 1.25rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-#next
-{
-	position:relative;
-	top:-30px;
-	left:250px;
-	width:12px;
-	text-align:left;
+#login-password::placeholder {
+    font-family: "Balsamiq Sans", sans-serif;
+    color: #b4b4b4;
 }
 
-#login-name:focus
-{
-	background-color:white;
-	border:1px solid #e6e6e6;
+#login-password:hover {
+    border-color: #e0e0e0;
 }
 
-#login-password
-{
-	position:relative;
-	top:-15px;
-	background-color:white;
-	padding:5px 5px 10px 10px;
-	width:93.5%;
-	height:20px;
-	font-size:15px;
-	border:1px solid #e2e1e1;
-	border-radius:15px;
-
-	text-align: center;
+#login-password:focus,
+#login-password:active {
+    border-color: #cacaca;
+    box-shadow: inset 0 1px 2px rgba(255, 140, 140, 0.3);
 }
 
-#login-password::-webkit-input-placeholder {
-    font-family: 'Balsamiq-sans';
-	color: #b4b4b4;
+/* ─── Login button ───────────────────────────────────────────────────────── */
+
+#login-button {
+    width: 100%;
+    height: 2.5rem;
+    font-family: "Balsamiq Sans", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    background: linear-gradient(135deg, #409bf0, #ff8585, #8598ff);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    animation: gradient-shift 20s ease infinite;
+    transition: box-shadow 0.2s, transform 0.1s;
+    outline: none;
 }
 
-#login-password:-ms-input-placeholder {
-    font-family: 'Balsamiq-sans';
+#login-button:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
-#login-password:-moz-placeholder {
-    font-family: 'Balsamiq-sans';
+#login-button:active {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(0.99);
 }
 
-#login-password::-moz-placeholder {
-    font-family: 'Balsamiq-sans';
+/* ─── Responsive adjustments ─────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+    #login-box {
+        width: 20rem;
+        min-height: 26rem;
+        padding: 3rem 2rem 2rem;
+    }
+
+    #clock-box {
+        font-size: 6rem;
+    }
 }
 
-#login-name:hover,
-#login-password:hover
-{
-	border:1px solid #e0e0e0;
-	outline:none;
+@media (min-width: 1200px) {
+    #login-box {
+        width: 22rem;
+        min-height: 28rem;
+        padding: 3.5rem 2.5rem 2rem;
+    }
 }
-
-#login-name:focus,
-#login-name:active,
-#login-password:focus, 
-#login-password:active
-{
-	border: 1px solid #cacaca;
-	box-shadow: inset 0 1px 2px rgba(255, 140, 140, 0.3);
-	outline: none;
-}
-
-#login-button
-{
-	position:relative;
-	/* top:-15px; */
-	outline:0;
-	font-family: 'Balsamiq-sans';
-	font-weight: 900;
-	font-size:14px;
-	margin-top:5px;
-	color:white;
-	border:0.5px solid #ffffff;
-	padding:5px;
-	border-radius:15px;
-	width:100%;
-	height:40px;
-	background: linear-gradient(270deg, #409bf0, #ff8585, #8598ff);
-	-webkit-animation: AnimationName 30s ease infinite;
-	-moz-animation: AnimationName 30s ease infinite;
-	animation: AnimationName 30s ease infinite;
-	background-size: 600% 600%;
-}
-
-#login-button:hover
-{
-	cursor:pointer;
-	/* border:1px solid #7f7f7f; */
-	box-shadow: 0 1px 1px rgba(0,0,0,.1);
-}
-
-#login-button:active
-{
-	box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
-}
-
-#login-bar
-{
-	position:absolute;
-	bottom:10px;
-	text-align: center;
-	width:99%;
-}
-
-#login-shutdown
-{
-	width:40px;
-	color:white;
-	background-color:transparent;
-	border:none;
-	padding-bottom:2px;
-}
-
-#login-shutdown:hover,
-#login-restart:hover
-{
-	cursor:pointer;
-	text-shadow:0 0 3px #FFFFFF;
-}
-
-#login-restart
-{
-	width:42px;
-	font-family:"iosevka";
-	color:white;
-	background-color:transparent;
-	border:none;
-}
-
-/* BG B U B B L E S
-.bg-bubbles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.bg-bubbles li {
-  position: absolute;
-  list-style: none;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.15);
-  bottom: -160px;
-  -webkit-animation: square 25s infinite;
-  animation: square 25s infinite;
-  transition-timing-function: linear;
-}
-.bg-bubbles li:nth-child(1) {
-  left: 10%;
-}
-.bg-bubbles li:nth-child(2) {
-  left: 20%;
-  width: 80px;
-  height: 80px;
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s;
-  -webkit-animation-duration: 17s;
-          animation-duration: 17s;
-}
-.bg-bubbles li:nth-child(3) {
-  left: 25%;
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
-}
-.bg-bubbles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  -webkit-animation-duration: 22s;
-          animation-duration: 22s;
-  background-color: rgba(255, 255, 255, 0.25);
-}
-.bg-bubbles li:nth-child(5) {
-  left: 70%;
-}
-.bg-bubbles li:nth-child(6) {
-  left: 80%;
-  width: 120px;
-  height: 120px;
-  -webkit-animation-delay: 3s;
-          animation-delay: 3s;
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.bg-bubbles li:nth-child(7) {
-  left: 32%;
-  width: 160px;
-  height: 160px;
-  -webkit-animation-delay: 7s;
-          animation-delay: 7s;
-}
-.bg-bubbles li:nth-child(8) {
-  left: 55%;
-  width: 20px;
-  height: 20px;
-  -webkit-animation-delay: 15s;
-          animation-delay: 15s;
-  -webkit-animation-duration: 40s;
-          animation-duration: 40s;
-}
-.bg-bubbles li:nth-child(9) {
-  left: 25%;
-  width: 10px;
-  height: 10px;
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s;
-  -webkit-animation-duration: 40s;
-          animation-duration: 40s;
-  background-color: rgba(255, 255, 255, 0.3);
-}
-.bg-bubbles li:nth-child(10) {
-  left: 90%;
-  width: 160px;
-  height: 160px;
-  -webkit-animation-delay: 11s;
-          animation-delay: 11s;
-}
-@-webkit-keyframes square {
-  0% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(-700px) rotate(600deg);
-            transform: translateY(-700px) rotate(600deg);
-  }
-}
-@keyframes square {
-  0% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(-700px) rotate(600deg);
-            transform: translateY(-700px) rotate(600deg);
-  }
-}
-
-*/

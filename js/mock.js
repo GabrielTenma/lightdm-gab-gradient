@@ -1,41 +1,56 @@
-/*
-    Mock data for testing your LightDM theme in the browser
-*/
-if (!('lightdm' in window)) {
+(function () {
+    "use strict";
+
+    /**
+     * Only activate in development (localhost / 127.0.0.1 / ::1) so the mock
+     * never shadows the real lightdm GObject bindings on an actual greeter host.
+     */
+    var isDev = /(localhost|127\.0\.0\.1|0\.0\.0\.0|::1)/.test(
+        window.location.hostname
+    );
+
+    if (!isDev || "lightdm" in window) {
+        return;
+    }
+
     window.lightdm = {};
-    lightdm.hostname ="test-host";
+    lightdm.hostname = "test-host";
     lightdm.languages = [
         {
             code: "en_US",
-            name: "English(US)",
+            name: "English (US)",
             territory: "USA"
         },
         {
-            code: "en_UK",
-            name: "English(UK)",
+            code: "en_GB",
+            name: "English (UK)",
             territory: "UK"
         }
     ];
     lightdm.default_language = lightdm.languages[0];
     lightdm.layouts = [
         {
-            name: "test",
-            short_description: "test description",
-            short_description:"really long epic description"
+            name: "us",
+            short_description: "English (US) layout"
         }
     ];
     lightdm.default_layout = lightdm.layouts[0];
     lightdm.layout = lightdm.layouts[0];
     lightdm.sessions = [
         {
-            key: "key1",
-            name: "session 1",
-            comment: "no comment"
+            key: "gnome",
+            name: "GNOME",
+            comment: "GNOME desktop"
         },
         {
-            key: "key2",
-            name: "session 2",
-            comment: "no comment"
+            key: "kde",
+            name: "KDE Plasma",
+            comment: "KDE Plasma desktop"
+        },
+        {
+            key: "xfce",
+            name: "Xfce",
+            comment: "Xfce desktop"
         }
     ];
 
@@ -50,7 +65,7 @@ if (!('lightdm' in window)) {
     lightdm.users = [
         {
             name: "gabriel221",
-            real_name: "gabriel",
+            real_name: "Gabriel",
             display_name: "Gabriel White Tenma",
             image: "static/gabriel.jpeg",
             language: "en_US",
@@ -60,9 +75,9 @@ if (!('lightdm' in window)) {
         },
         {
             name: "brucew",
-            real_name: "Batman",
+            real_name: "Bruce",
             display_name: "Bruce Wayne",
-            image: "http://uk.omg.li/VDHr/OW-blog-Batman.jpg",
+            image: "static/profile.jpg",
             language: "en_US",
             layout: null,
             session: null,
@@ -70,40 +85,46 @@ if (!('lightdm' in window)) {
         },
         {
             name: "peterp",
-            real_name:"Spiderman",
+            real_name: "Peter",
             display_name: "Peter Parker",
-            image: "",
+            image: "static/profile.jpg",
             language: "en_US",
             layout: null,
             session: null,
-            logged_in: true
+            logged_in: false
         }
     ];
 
     lightdm.num_users = lightdm.users.length;
-    lightdm.timed_login_delay = 0; // increase to simulate timed_login_delay
+    lightdm.timed_login_delay = 0; // set > 0 to simulate timed login
     lightdm.timed_login_user =
         lightdm.timed_login_delay > 0 ? lightdm.users[0] : null;
 
+    // ─── property helpers (no-ops in mock) ───────────────────────────────────
     lightdm.get_string_property = function () {};
     lightdm.get_integer_property = function () {};
     lightdm.get_boolean_property = function () {};
-    lightdm.cancel_timed_login = function () {
-        _lightdm_mock_check_argument_length(arguments, 0);
 
-        lightdm._timed_login_cancelled= true;
+    // ─── LightDM API stubs ────────────────────────────────────────────────────
+    lightdm.cancel_timed_login = function () {
+        _mock_check_arglen(arguments, 0);
+        lightdm._timed_login_cancelled = true;
+    };
+
+    lightdm.cancel_autologin = function () {
+        _mock_check_arglen(arguments, 0);
     };
 
     lightdm.provide_secret = function (secret) {
-        if (typeof lightdm._username == 'undefined' || !lightdm._username) {
-            throw "must call start_authentication first"
+        _mock_check_arglen(arguments, 1);
+
+        if (!lightdm._username) {
+            throw new Error("must call start_authentication first");
         }
-        _lightdm_mock_check_argument_length(arguments, 1);
 
-        var user = _lightdm_mock_get_user(lightdm.username);
+        var user = _mock_find_user(lightdm._username);
 
-        // That's right, passwords are the same as the username's!
-        if (!user && secret == lightdm._username) {
+        if (user && secret === lightdm._username) {
             lightdm.is_authenticated = true;
             lightdm.authentication_user = user;
         } else {
@@ -112,89 +133,107 @@ if (!('lightdm' in window)) {
             lightdm._username = null;
         }
 
-        authentication_complete();
+        if (typeof authentication_complete === "function") {
+            authentication_complete();
+        }
     };
 
+    /**
+     * Compatibility alias: real LightDM WebKit greeter uses `lightdm.respond()`
+     * while the original mock exposed `provide_secret`. Provide both.
+     */
+    lightdm.respond = lightdm.provide_secret;
+
     lightdm.start_authentication = function (username) {
-        _lightdm_mock_check_argument_length(arguments, 1);
+        _mock_check_arglen(arguments, 1);
 
         if (lightdm._username) {
-            throw "Already authenticating!";
+            throw new Error("Already authenticating");
         }
-        var user = _lightdm_mock_get_user(username);
+
+        var user = _mock_find_user(username);
         if (!user) {
             show_error(username + " is an invalid user");
         }
-        //show_prompt("Password: ");
+
         lightdm._username = username;
     };
 
     lightdm.cancel_authentication = function () {
-        _lightdm_mock_check_argument_length(arguments, 0);
+        _mock_check_arglen(arguments, 0);
 
         if (!lightdm._username) {
-            throw "we are not authenticating";
+            throw new Error("not currently authenticating");
         }
         lightdm._username = null;
     };
 
     lightdm.suspend = function () {
-        alert("System Suspended. Bye Bye");
-        document.location.reload(true);
+        show_error("System suspend triggered (mock)");
     };
 
     lightdm.hibernate = function () {
-        alert("System Hibernated. Bye Bye");
-        document.location.reload(true);
+        show_error("System hibernate triggered (mock)");
     };
 
     lightdm.restart = function () {
-        alert("System restart. Bye Bye");
-        document.location.reload(true);
+        show_error("System restart triggered (mock)");
     };
 
     lightdm.shutdown = function () {
-        alert("System Shutdown. Bye Bye");
-        document.location.reload(true);
+        show_error("System shutdown triggered (mock)");
     };
 
     lightdm.login = function (user, session) {
-        _lightdm_mock_check_argument_length(arguments, 2);
+        _mock_check_arglen(arguments, 2);
 
         if (!lightdm.is_authenticated) {
-            throw "The system is not authenticated";
+            throw new Error("The system is not authenticated");
         }
         if (user !== lightdm.authentication_user) {
-            throw "this user is not authenticated";
+            throw new Error("this user is not authenticated");
         }
 
-        alert("logged in successfully!!");
-        document.location.reload(true);
+        show_error("Login success — mock mode (mock)");
     };
 
-    if (lightdm.timed_login_delay > 0) {
-        setTimeout(
-            function () {
-                if (!lightdm._timed_login_cancelled()) timed_login();
-            },
-            lightdm.timed_login_delay
-        );
-    }
-}
-// Helper functions
-var _lightdm_mock_check_argument_length = function (args, length) {
-    if (args.length != length) {
-        throw "incorrect number of arguments in function call";
-    }
-}
+    // ─── Optional session start session mock ─────────────────────────────────
+    lightdm.start_session = function (sessionKey) {
+        _mock_check_arglen(arguments, 1);
 
-var _lightdm_mock_get_user = function (username) {
-    var user = null;
-    for (var i = 0; i < lightdm.users.length; ++i) {
-        if (lightdm.users[i].name == username) {
-            user= lightdm.users[i];
-            break;
+        var session = lightdm.sessions.filter(function (s) {
+            return s.key === sessionKey;
+        })[0];
+
+        if (!session) {
+            throw new Error("Session '" + sessionKey + "' not found");
+        }
+
+        show_error(
+            "Would start session: " + session.name + " (mock)"
+        );
+    };
+
+    // ─── Helper functions ─────────────────────────────────────────────────────
+    function _mock_check_arglen(args, length) {
+        if (args.length !== length) {
+            throw new Error(
+                "incorrect number of arguments (expected " +
+                    length +
+                    ", got " +
+                    args.length +
+                    ")"
+            );
         }
     }
-    return user;
-}
+
+    function _mock_find_user(username) {
+        for (var i = 0; i < lightdm.users.length; ++i) {
+            if (lightdm.users[i].name === username) {
+                return lightdm.users[i];
+            }
+        }
+        return null;
+    }
+
+}());

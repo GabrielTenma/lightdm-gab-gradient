@@ -1,39 +1,39 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="static/style.css" />
 </head>
 <body>
     <div id="login-background"></div>
     <div id="wrapper">
-        <!--<div id="clock-box">
-            <script>startTime();</script>
-        </div> -->
-        <br>
-        <br>
-        <br>
         <div id="login-box">
-            <img id="login-picture">
-            <div id="login-response"></div>
-            <br>
-            <form id="login-form" action="javascript: provide_secret();">
-                <div id="last"><</div>
+            <img id="login-picture" alt="User avatar" />
+            <div id="login-response" role="alert" aria-live="polite"></div>
+            <br />
+            <form id="login-form">
+                <button type="button" id="last" aria-label="Previous user">&nbsp;</button>
                 <div id="container">
-                    <div id="name">
-
-                    </div>
+                    <div id="name" aria-live="polite"></div>
                 </div>
-                <div id="next">></div>
-                <input placeholder="Enter Password" type="password" id="login-password" tabindex="2">
+                <button type="button" id="next" aria-label="Next user">&nbsp;</button>
+                <input
+                    label="Password"
+                    placeholder="Enter Password"
+                    type="password"
+                    id="login-password"
+                    aria-label="Password"
+                    autocomplete="current-password"
+                    tabindex="2"
+                />
                 <button id="login-button" type="submit" tabindex="3">
-                    Login
+                    Log in
                 </button>
             </form>
         </div>
     </div>
 
-    <script src="js/mock.js"></script>
     <script src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
