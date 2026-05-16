@@ -33,16 +33,6 @@
             layout: null,
             session: null,
             logged_in: false
-        },
-        {
-            name: "mita",
-            real_name: "Mita",
-            display_name: "Mita Illya",
-            image: "static/person1.jpeg",
-            language: "en_US",
-            layout: null,
-            session: null,
-            logged_in: false
         }
     ];
     lightdm.num_users = lightdm.users.length;
@@ -53,20 +43,49 @@
     lightdm.cancel_timed_login     = function () {};
     lightdm.cancel_autologin       = function () {};
 
+    /* ── LightDM signals ──────────────────────────────────────────────── */
+    /* Minimal Signal replicating .connect/.disconnect semantics */
+    function LightDM_Signal(self) {
+        this._handlers = [];
+        this._self = self;           /* back-ref to lightdm GET */
+    }
+    LightDM_Signal.prototype.connect = function (handler) {
+        this._handlers.push(handler);
+    };
+    LightDM_Signal.prototype.disconnect = function (handler) {
+        for (var i = 0; i < this._handlers.length; i++) {
+            if (this._handlers[i] === handler) {
+                this._handlers.splice(i, 1);
+                break;
+            }
+        }
+    };
+    LightDM_Signal.prototype.emit = function () {
+        for (var i = 0; i < this._handlers.length; ++i) {
+            this._handlers[i].apply(null, arguments);
+        }
+    };
+
+    lightdm.authentication_complete = new LightDM_Signal(lightdm);
+    lightdm.autologin_timer_expired  = new LightDM_Signal(lightdm);
+    lightdm.brightness_update        = new LightDM_Signal(lightdm);
+    lightdm.idle                     = new LightDM_Signal(lightdm);
+    lightdm.reset                    = new LightDM_Signal(lightdm);
+    lightdm.show_message             = new LightDM_Signal(lightdm);
+    lightdm.show_prompt              = new LightDM_Signal(lightdm);
+
     lightdm.provide_secret = function (secret) {
         if (!lightdm._username) throw new Error("authenticate first");
         var user = null;
-        for (var i = 0; i < lightdm.users.length; i++) {
+        for (var i = 0; i < lightdm.users.length; ++i) {
             if (lightdm.users[i].name === lightdm._username) {
                 user = lightdm.users[i]; break;
             }
         }
-        lightdm.is_authenticated  = !!user && secret === lightdm._username;
+        lightdm.is_authenticated  = !!(user && secret === user.name);
         lightdm.authentication_user = lightdm.is_authenticated ? user : null;
         if (!lightdm.is_authenticated) lightdm._username = null;
-        if (typeof authentication_complete === "function") {
-            authentication_complete();
-        }
+        lightdm.authentication_complete.emit();
     };
     lightdm.respond = lightdm.provide_secret;
 

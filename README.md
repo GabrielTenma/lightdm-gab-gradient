@@ -2,7 +2,11 @@
   <img src=".github/assets/banner.png" alt="lightdm-weebkit" style="width: 100%; max-width: 700px;"/>
 </div>
 
+![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)
+
 LightDM-**weebkit** theme — Animated Background Gradient + Animated Button + Multi-account support.
+
+**NOTE: This login engine been DEPRECATED, please use anoter login system more modern version.**
 
 ## What is LightDM Webkit?
 
