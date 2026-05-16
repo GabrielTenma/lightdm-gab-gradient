@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=".assets/banner.png" alt="lightdm-weebkit" style="width: 100%; max-width: 700px;"/>
+  <img src=".github/assets/banner.png" alt="lightdm-weebkit" style="width: 100%; max-width: 700px;"/>
 </div>
 
 LightDM-**weebkit** theme — Animated Background Gradient + Animated Button + Multi-account support.
