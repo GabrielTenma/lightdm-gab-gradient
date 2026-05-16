@@ -1,0 +1,12 @@
+{
+  "name": "lightdm-gab-gradient-preview",
+  "version": "1.0.0",
+  "description": "Login page preview for lightdm-gab-gradient",
+  "private": true,
+  "scripts": {
+    "dev": "npx http-server -p 3000 -o"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}
