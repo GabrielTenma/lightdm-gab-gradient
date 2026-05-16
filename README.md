@@ -1,52 +1,59 @@
-<br>
-<p align="center">
-  <img src="https://i.imgur.com/3lzaO71.png" alt="its GabrielTenma" width="500" height="400">
-</p>
-<br>
+<div align="center">
+  <img src=".github/assets/banner.png" alt="lightdm-weebkit" style="width: 100%; max-width: 700px;"/>
+</div>
 
+![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)
 
-## Gab Lightdm-weebkit
-- LightDM-<b>weebkit</b> Theme
-- Animated Background Gradient
-- animated Button too!!
-- Multiaccount supported
+LightDM-**weebkit** theme — Animated Background Gradient + Animated Button + Multi-account support.
 
-<br>
-<br>
+**NOTE: This login engine been DEPRECATED, please use anoter login system more modern version.**
 
-## What is LightDM Webkit ?
-The lightdm-webkit-greeter allows you to choose a background image directly on the login screen. It also offers an option to display a random image each time it starts if you use the lightdm-gab-gradient theme. 
-By default, images are sourced from `/usr/share/backgrounds` . You can change the background images directory by editing lightdm-webkit-greeter.conf
+## What is LightDM Webkit?
 
-<br>
+The `lightdm-webkit-greeter` lets you choose a background image directly on the login screen.  
+This theme adds a smooth animated gradient background instead of a static image.
 
-<!-- ## Installation
-Instructions will differ for every platform, but I can tell you how to install it on `Xubuntu`
-
-1. Install and enable `lightdm` and `web-greeter`
-2. In the terminal, navigate to `/usr/share/web-greeter/themes/`
-3. Clone this repository here, it should create a folder called `lightdm-gab-gradient`
-4. Enable the theme in your `/etc/lightdm/lightdm-webkit-greeter.conf`
-5. Replace lightdm-gtk to lightdm-webkit in your `/usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf`
-6. change line code `greeter-session=lightdm-gtk-greeter` to `greeter-session=lightdm-webkit-greeter`
- -->
-<br>
+By default, images are sourced from `/usr/share/backgrounds`. You can change the background directory by editing `lightdm-webkit-greeter.conf`.
 
 ## Dependency required
- - web-greeter : https://github.com/JezerM/web-greeter
 
-<br>
+- **lightdm-webkit-greeter** — https://github.com/JezerM/web-greeter
 
 ## Font required
-you must install this `fonts`
 
-- Balsamiq : (already included)
-- Segoe UI : https://github.com/meloncholy/mt-stats-viewer/raw/master/public/fonts/segoe-ui/segoeui.ttf `optional`
-- iosevka  : https://github.com/be5invis/Iosevka/releases/download/v2.0.1/01-iosevka-2.0.1.zip `optional`
+- **Balsamiq** — already included (`static/Balsamiq_Sans/`)
+- **Segoe UI** — optional https://github.com/meloncholy/mt-stats-viewer/raw/master/public/fonts/segoe-ui/segoeui.ttf
+- **Iosevka** — optional https://github.com/be5invis/Iosevka/releases/download/v2.0.1/01-iosevka-2.0.1.zip
 
-or you can customize in `CSS`
+Or customize in `static/style.css`.
 
-<br>
+## Installation
 
-## Screenshot 
-![](https://raw.githubusercontent.com/GabrielTenma/lightdm-gab-gradient/master/.skrinsutan/Screen%20Shot%202021-08-24%20at%2010.28.50%20PM%20%E3%82%AC%E3%83%B4.png)
+```
+1. Install lightdm and lightdm-webkit-greeter
+    sudo apt install lightdm lightdm-webkit-greeter
+
+2. In the terminal, navigate to /usr/share/lightdm-webkit/themes/
+
+3. Clone this repository here, it should create a folder called lightdm-gab-gradient
+    sudo git clone https://github.com/<your-username>/lightdm-gab-gradient.git
+
+4. Enable the theme in your /etc/lightdm/lightdm-webkit-greeter.conf
+    theme = lightdm-gab-gradient
+
+5. Replace lightdm-gtk to lightdm-webkit in /usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf
+    greeter-session = lightdm-webkit-greeter
+
+6. Restart lightdm
+    sudo systemctl restart lightdm
+```
+
+## Screenshot
+
+![Login](.github/assets/preview.png)
+
+## Modifying & Development
+
+See [MOD.md](MOD.md) for how to customise the theme, run it locally during development, and how the code is structured.
+
+MIT License.

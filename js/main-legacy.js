@@ -1,6 +1,6 @@
-let children;
-let currentIndex = 0;
-let selectedUser = null;
+var children;
+var currentIndex = 0;
+var selectedUser = null;
 
 var $userList;
 var $pass;
@@ -18,31 +18,29 @@ function show_message(msg) {
 function setup_users_list() {
     $userList.empty();
     $.each(lightdm.users, function (i, user) {
-        $userList.append(
-            $("<span>")
-                .attr("data-user-index", i)
-                .text(user.display_name || user.name)
-        );
+        var $span = $("<span>")
+            .attr("data-user-index", i)
+            .text(user.display_name || user.name);
+        $userList.append($span);
     });
     children = $userList.children().length;
 }
 
 function find_and_display_user_picture(idx) {
     var user = lightdm.users[idx];
-    var src  = user && user.image ? user.image : "static/profile.jpg";
+    var src = user && user.image;
 
-    $pic.attr("src", src);
-    $pic.css("opacity", 0);
+    if (src) {
+        $pic.attr("src", src);
+    } else {
+        $pic.attr("src", "static/profile.jpg");
+    }
 
-    $pic.off("load.fadeIn error.fallback")
-        .on("load.fadeIn", function () { $pic.css("opacity", 1); })
-        .on("error.fallback", function () {
-            if ($pic.attr("src") !== "static/profile.jpg") {
-                $pic.attr("src", "static/profile.jpg");
-            } else {
-                $pic.css("opacity", 1);
-            }
-        });
+    $pic.on("load", function () {
+        $pic.css("opacity", 1);
+    }).on("error", function () {
+        $pic.attr("src", "static/profile.jpg");
+    }).css("opacity", 0);
 }
 
 function select_user_from_list(idx, err) {
@@ -74,9 +72,10 @@ function start_authentication(username) {
 
 function authentication_complete() {
     if (lightdm.is_authenticated) {
-        var sessionKey = lightdm.default_session
-            ? lightdm.default_session.key
-            : null;
+        var sessionKey = null;
+        if (lightdm.default_session) {
+            sessionKey = lightdm.default_session.key;
+        }
         if (sessionKey) {
             lightdm.start_session(sessionKey);
         }
@@ -107,7 +106,11 @@ function navigate_next() {
 
 function update_user_view() {
     var offset = currentIndex * 240;
-    $userList.css("transform", "-" + offset + "px");
+    var value = "-" + offset + "px";
+    $userList.css({
+        "-webkit-transform": value,
+        "transform": value
+    });
     select_user_from_list(currentIndex, false);
 }
 
@@ -118,6 +121,7 @@ function init() {
     $response = $("#login-response");
 
     if (!$userList.length || !$pass.length || !$pic.length) {
+        console.error("[lightdm-gab-gradient] DOM elements missing – retrying in 250ms");
         setTimeout(init, 250);
         return;
     }
@@ -131,14 +135,21 @@ function init() {
 
     $response.text("\u00a0");
 
+    $userList.css("transform", "-" + 0 + "px");
+
     $("#last").on("click", navigate_prev);
     $("#next").on("click", navigate_next);
 
     $(document).on("keydown", function (e) {
-        if (e.key === "ArrowLeft")      { navigate_prev(); return; }
-        if (e.key === "ArrowRight")     { navigate_next(); return; }
-        if (e.key === "Enter" || e.key === "Return") {
-            if (document.activeElement === $pass[0]) provide_secret();
+        var key = e.keyCode || e.which || 0;
+        if (key === 37) {
+            navigate_prev();
+        } else if (key === 39) {
+            navigate_next();
+        } else if (key === 13 || key === 10) {
+            if (document.activeElement === $pass[0]) {
+                provide_secret();
+            }
         }
     });
 
