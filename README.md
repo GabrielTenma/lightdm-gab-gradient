@@ -6,7 +6,7 @@
 
 LightDM-**weebkit** theme — Animated Background Gradient + Animated Button + Multi-account support.
 
-**NOTE: This login engine been DEPRECATED, please use anoter login system more modern version.**
+**NOTE: This login engine been DEPRECATED, please use another login system more modern version.**
 
 ## What is LightDM Webkit?
 
